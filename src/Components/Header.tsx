@@ -4,7 +4,6 @@ import { ReactComponent as TrollLogo } from "/src/assets/troll__logo.svg";
 
 const StyledHeader = styled.div`
   display: flex;
-  justify-content: space-around;
   align-items: center;
   gap: 0.75em;
   height: 65px;
@@ -19,7 +18,7 @@ const StyledHeader = styled.div`
   }
 
   & .header__title {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     font-family: "Karla";
     font-weight: 600;
     margin-right: auto;
