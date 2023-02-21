@@ -20,3 +20,8 @@ Along with the officially prescribed learning objective, I will also learn to us
 # Design File
 
 Figma: https://www.figma.com/file/MoLwFPHNHJVrzdFurxHzNV/Meme-Generator?node-id=0%3A1&t=b7HbGB2ebi5rJLSC-0
+
+# Known Issues
+
+- ts ignore while importing svg in the header.
+  - I currently don't have a better solution for importing svgs. Need to learn more later.
