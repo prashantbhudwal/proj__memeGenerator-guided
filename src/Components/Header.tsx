@@ -12,6 +12,10 @@ const StyledHeader = styled.div`
   background: linear-gradient(90deg, #672280 1.18%, #a626d3 100%);
   color: white;
   & .header__logo {
+    & .logoSvg {
+      height: 50px;
+      width: 50px;
+    }
   }
 
   & .header__title {
@@ -30,7 +34,7 @@ const Header = () => {
   return (
     <StyledHeader>
       <div className="header__logo">
-        <TrollLogo />
+        <TrollLogo className="logoSvg" />
       </div>
       <h1 className="header__title">Meme Generator</h1>
       <p className="header__subTitle">A Guided React Project</p>
