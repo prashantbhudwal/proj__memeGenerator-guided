@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import Button from "./Button";
+import memeObject from "../memeData";
 
 const StyledPromptForm = styled.div`
   padding: 1em;
@@ -33,6 +34,14 @@ const StyledPromptForm = styled.div`
 `;
 
 const PromptForm = () => {
+  const handleClick = function (event: any) {
+    event.preventDefault();
+    const memeArray = memeObject.data.memes;
+    const randomNumber = Math.floor(Math.random() * (memeArray.length + 1));
+    const randomImageUrl = memeArray[randomNumber].url;
+    console.log(randomImageUrl);
+  };
+
   return (
     <StyledPromptForm>
       <form action="" className="form">
@@ -56,7 +65,9 @@ const PromptForm = () => {
             />
           </label>
         </div>
-        <Button>Get a new meme image</Button>
+        <Button onClick={(event: any) => handleClick(event)}>
+          Get a new meme image
+        </Button>
       </form>
     </StyledPromptForm>
   );
