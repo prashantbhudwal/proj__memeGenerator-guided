@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import Button from "./Button";
 import memeObject from "../memeData";
+import { useState } from "react";
 
 const StyledPromptForm = styled.div`
   padding: 1em;
@@ -34,12 +35,14 @@ const StyledPromptForm = styled.div`
 `;
 
 const PromptForm = () => {
+  const [memeImageUrl, setMemeImageUrl] = useState("");
+
   const handleClick = function (event: any) {
     event.preventDefault();
     const memeArray = memeObject.data.memes;
-    const randomNumber = Math.floor(Math.random() * (memeArray.length + 1));
+    const randomNumber = Math.floor(Math.random() * memeArray.length);
     const randomImageUrl = memeArray[randomNumber].url;
-    console.log(randomImageUrl);
+    setMemeImageUrl(randomImageUrl);
   };
 
   return (
@@ -68,6 +71,7 @@ const PromptForm = () => {
         <Button onClick={(event: any) => handleClick(event)}>
           Get a new meme image
         </Button>
+        <img src={memeImageUrl} alt="Meme Image" />
       </form>
     </StyledPromptForm>
   );
