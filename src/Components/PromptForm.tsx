@@ -76,6 +76,7 @@ const PromptForm = () => {
         <Button onClick={(event: any) => handleClick(event)}>
           Get a new meme image
         </Button>
+        {meme.randomImage && <img src={meme.randomImage} alt="Meme Image" />}
       </form>
     </StyledPromptForm>
   );
