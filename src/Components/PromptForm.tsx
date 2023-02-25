@@ -35,14 +35,19 @@ const StyledPromptForm = styled.div`
 `;
 
 const PromptForm = () => {
-  const [memeImageUrl, setMemeImageUrl] = useState("");
+  const [meme, setMeme] = useState({
+    topText: "",
+    bottomText: "",
+    randomImage: "",
+  });
+  const [memObject, setMemObject] = useState(memeObject);
 
   const handleClick = function (event: any) {
     event.preventDefault();
     const memeArray = memeObject.data.memes;
     const randomNumber = Math.floor(Math.random() * memeArray.length);
     const randomImageUrl = memeArray[randomNumber].url;
-    setMemeImageUrl(randomImageUrl);
+    setMeme((prevMeme) => ({ ...prevMeme, randomImage: randomImageUrl }));
   };
 
   return (
@@ -71,7 +76,6 @@ const PromptForm = () => {
         <Button onClick={(event: any) => handleClick(event)}>
           Get a new meme image
         </Button>
-        <img src={memeImageUrl} alt="Meme Image" />
       </form>
     </StyledPromptForm>
   );
