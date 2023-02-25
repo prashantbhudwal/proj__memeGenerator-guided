@@ -14,6 +14,7 @@ const globalStyles = css`
   }
   image {
     display: block;
+    max-width: 100%;
   }
   button {
     border: none;
