@@ -62,10 +62,8 @@ const MemeSection = styled.div`
     left: 0;
   }
 `;
-
 const StyledImage = styled.img`
   width: 100%;
-  height: 500px;
   object-fit: cover;
 `;
 
