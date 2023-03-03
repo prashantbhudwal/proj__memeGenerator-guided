@@ -27,11 +27,46 @@ const StyledPromptForm = styled.div`
         border-radius: 5px;
       }
       & .form__input::placeholder {
-        color: #0d0d0d;
+        color: gray;
         font-size: 1rem;
       }
     }
   }
+`;
+const MemeSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+
+  & .text {
+    font-family: "Impact", sans-serif;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 0 black, -1px -1px 0 #000, 1px -1px 0 #000,
+      -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+
+  & .topText {
+    position: absolute;
+    top: 15px;
+    left: 0;
+  }
+
+  & .bottomText {
+    position: absolute;
+    bottom: 15px;
+    left: 0;
+  }
+`;
+
+const StyledImage = styled.img`
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
 `;
 
 const PromptForm = () => {
@@ -40,7 +75,6 @@ const PromptForm = () => {
     bottomText: "",
     randomImage: "",
   });
-  const [memObject, setMemObject] = useState(memeObject);
 
   const handleClick = function (event: any) {
     event.preventDefault();
@@ -50,6 +84,11 @@ const PromptForm = () => {
     setMeme((prevMeme) => ({ ...prevMeme, randomImage: randomImageUrl }));
   };
 
+  const handleChange = function (event: any) {
+    const { name, value } = event.target;
+    setMeme((prevMeme) => ({ ...prevMeme, [name]: value }));
+  };
+
   return (
     <StyledPromptForm>
       <form action="" className="form">
@@ -57,26 +96,36 @@ const PromptForm = () => {
           <label>
             <input
               type="text"
-              name="topLine"
+              name="topText"
               id="inputTopLine"
               className="form__input"
-              placeholder="main line"
+              placeholder="Top Text"
+              value={meme.topText}
+              onChange={handleChange}
             />
           </label>
           <label>
             <input
               type="text"
-              name="bottomLine"
+              name="bottomText"
               id="inputBottomLine"
               className="form__input"
-              placeholder="bottom line"
+              placeholder="Bottom Text"
+              value={meme.bottomText}
+              onChange={handleChange}
             />
           </label>
         </div>
         <Button onClick={(event: any) => handleClick(event)}>
           Get a new meme image
         </Button>
-        {meme.randomImage && <img src={meme.randomImage} alt="Meme Image" />}
+        {meme.randomImage && (
+          <MemeSection>
+            <h2 className="topText text">{meme.topText}</h2>
+            <StyledImage src={meme.randomImage} alt="Meme Image" />
+            <h2 className="bottomText text">{meme.bottomText}</h2>
+          </MemeSection>
+        )}
       </form>
     </StyledPromptForm>
   );
