@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import Button from "./Button";
 import memeObject from "../memeData";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const StyledPromptForm = styled.div`
   padding: 1em;
@@ -74,12 +74,26 @@ const PromptForm = () => {
     randomImage: "",
   });
 
+  const [fetchMeme, setFetchMeme] = useState(false);
+
+  useEffect(() => {
+    fetch("https://api.imgflip.com/get_memes")
+      .then((response) => response.json())
+      .then((data) => {
+        const memeArray = data.data.memes;
+        const randomNumber = Math.floor(Math.random() * memeArray.length);
+        const randomImageUrl = memeArray[randomNumber].url;
+        setMeme((prevMeme) => ({ ...prevMeme, randomImage: randomImageUrl }));
+      });
+  }, [fetchMeme]);
+
+  const getMeme = () => {
+    setFetchMeme((prevFetchMeme) => !prevFetchMeme);
+  };
+
   const handleClick = function (event: any) {
     event.preventDefault();
-    const memeArray = memeObject.data.memes;
-    const randomNumber = Math.floor(Math.random() * memeArray.length);
-    const randomImageUrl = memeArray[randomNumber].url;
-    setMeme((prevMeme) => ({ ...prevMeme, randomImage: randomImageUrl }));
+    setFetchMeme((prevFetchMeme) => !prevFetchMeme);
   };
 
   const handleChange = function (event: any) {
